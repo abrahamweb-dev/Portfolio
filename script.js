@@ -193,3 +193,57 @@ if (rateStarsContainer && rateAverageEl && typeof supabase !== "undefined") {
 
   updateAverageDisplay();
 }
+/* ---- Automatic Portfolio Visitor Counter ---- */
+
+const portfolioViews = document.getElementById("portfolioViews");
+
+if (portfolioViews && typeof supabase !== "undefined") {
+
+  const VISITOR_SUPABASE_URL =
+    "https://rkcvgbcrlsfrddcjciot.supabase.co";
+
+  const VISITOR_SUPABASE_KEY =
+    "sb_publishable_0Z6Frz22R17gqMJCxHNeYw_LL9OonfJ";
+
+  const visitorSupabase = supabase.createClient(
+    VISITOR_SUPABASE_URL,
+    VISITOR_SUPABASE_KEY
+  );
+
+  let visitorKey = localStorage.getItem("portfolioVisitorKey");
+
+  if (!visitorKey) {
+    if (crypto.randomUUID) {
+      visitorKey = crypto.randomUUID();
+    } else {
+      visitorKey =
+        Date.now().toString() +
+        Math.random().toString(36).substring(2);
+    }
+
+    localStorage.setItem("portfolioVisitorKey", visitorKey);
+  }
+
+  async function recordPortfolioVisit() {
+
+    const { data, error } = await visitorSupabase.rpc(
+      "record_portfolio_visit",
+      {
+        p_visitor_key: visitorKey
+      }
+    );
+
+    if (error) {
+      console.error("Portfolio visitor error:", error);
+      portfolioViews.textContent = "Views unavailable";
+      return;
+    }
+
+    if (data && data.length > 0) {
+      portfolioViews.textContent =
+        Portfolio Views: ${data[0].views};
+    }
+  }
+
+  recordPortfolioVisit();
+}
