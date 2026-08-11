@@ -230,7 +230,7 @@ if (portfolioViews && typeof supabase !== "undefined") {
     "record_portfolio_visit",
     {
         p_visitor_key: visitorKey,
-        p_visitor_name: null
+        p_visitor_name: "Anonymous"
     }
 );
 
