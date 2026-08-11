@@ -241,7 +241,7 @@ if (portfolioViews && typeof supabase !== "undefined") {
 
     if (data && data.length > 0) {
       portfolioViews.textContent =
-        Portfolio Views: ${data[0].views};
+        `Portfolio Views: ${data[0].views}`;
     }
   }
 
