@@ -227,11 +227,12 @@ if (portfolioViews && typeof supabase !== "undefined") {
   async function recordPortfolioVisit() {
 
     const { data, error } = await visitorSupabase.rpc(
-      "record_portfolio_visit",
-      {
-        p_visitor_key: visitorKey
-      }
-    );
+    "record_portfolio_visit",
+    {
+        p_visitor_key: visitorKey,
+        p_visitor_name: null
+    }
+);
 
     if (error) {
       console.error("Portfolio visitor error:", error);
