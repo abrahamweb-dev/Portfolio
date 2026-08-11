@@ -431,10 +431,42 @@
       <button type="submit" class="btn">Send Message</button>
     </form>
   </section>
+<section class="visitor-section fade-in">
+  <h2 class="heading">Portfolio <span>Visitors</span></h2>
 
+  <p class="visitor-description">
+    Have you visited my portfolio? You can optionally leave your name.
+  </p>
+
+  <div class="visitor-form">
+    <input
+      type="text"
+      id="visitorName"
+      placeholder="Your name (optional)"
+      maxlength="50"
+    >
+
+    <button type="button" id="visitorSubmit" class="btn">
+      Continue
+    </button>
+  </div>
+
+  <p id="visitorMessage"></p>
+
+  <div class="recent-visitors">
+    <h3>Recent Visitors</h3>
+    <div id="visitorList">
+      Loading visitors...
+    </div>
+  </div>
+</section>
   <footer>
-    <p>&copy; 2026 Abraham. All rights reserved.</p>
-  </footer>
+  <p>&copy; 2026 Abraham. All rights reserved.</p>
+
+  <div class="visitor-counter">
+    👁️ <span id="portfolioViews">Loading views...</span>
+  </div>
+</footer>
 
   <button id="backToTop" title="Back to top">↑</button>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
